@@ -6,17 +6,16 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.5.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/> <!-- lookup parent from repositories -->
     </parent>
     <groupId>com.lambdaschool</groupId>
     <artifactId>bookstore</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>bookstore</name>
-    <description>Demo project for Spring Boot</description>
-    <packaging>jar</packaging>
+    <name>Sprint 14 - Java Bookstore</name>
+    <description>bookstore</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>12</java.version>
     </properties>
 
     <dependencies>
@@ -136,9 +135,8 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
         <!--        <finalName>${project.artifactId}</finalName>-->
-<!--        <finalName>jrmmba-starthere</finalName>-->
+        <finalName>humart-bookstore</finalName>
 
         <plugins>
             <plugin>
@@ -156,7 +154,7 @@
                     <appName>humart-bookstore</appName>
                     <includeTarget>false</includeTarget>
                     <includes>
-<!--                           For windows      <include>${project.build.directory}\${project.build.finalName}.jar</include>-->
+                        <!--   For windows      <include>${project.build.directory}\${project.build.finalName}.jar</include>-->
                         <include>${project.build.directory}\${project.build.finalName}.jar</include>
                     </includes>
                     <jdkVersion>${java.version}</jdkVersion>
