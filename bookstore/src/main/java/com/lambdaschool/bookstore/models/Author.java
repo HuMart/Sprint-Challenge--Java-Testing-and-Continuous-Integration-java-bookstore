@@ -7,68 +7,62 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "author")
-public class Author extends Auditable
-{
+public class Author extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long authorid;
 
-    private String fname;
+    private String lastname;
 
-    private String lname;
+    private String firstname;
 
-    @ManyToMany(mappedBy = "authors")
-    @JsonIgnoreProperties("authors")
-    private List<Book> books = new ArrayList<>();
+    @ManyToMany(mappedBy = "authorList")
+    @JsonIgnoreProperties(value = "authorList")
+    List<Book> bookList = new ArrayList<>();
 
-    public Author()
-    {
+    public Author() {
     }
 
-    public Author(String fname, String lname)
-    {
-        this.fname = fname;
-        this.lname = lname;
+    public Author(String lastname, String firstname) {
+        this.lastname = lastname;
+        this.firstname = firstname;
     }
 
-    public long getAuthorid()
-    {
+    public Author(String lastname, String firstname, List<Book> bookList) {
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.bookList = bookList;
+    }
+
+    public long getAuthorid() {
         return authorid;
     }
 
-    public void setAuthorid(long authorid)
-    {
+    public void setAuthorid(long authorid) {
         this.authorid = authorid;
     }
 
-    public String getFname()
-    {
-        return fname;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setFname(String fname)
-    {
-        this.fname = fname;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getLname()
-    {
-        return lname;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setLname(String lname)
-    {
-        this.lname = lname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public List<Book> getBooks()
-    {
-        return books;
+    public List<Book> getBookList() {
+        return bookList;
     }
 
-    public void setBooks(List<Book> books)
-    {
-        this.books = books;
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
     }
 }

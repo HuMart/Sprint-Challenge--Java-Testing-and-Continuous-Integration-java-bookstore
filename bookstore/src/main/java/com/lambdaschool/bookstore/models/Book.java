@@ -7,39 +7,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "book")
 public class Book extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long bookid;
 
-    private String title;
+    @Column(nullable = false)
+    private String booktitle;
 
-    private String ISBN;
+    private String isbn;
 
-    private int copy;
-
-    private long sectionid;
-
+    private String copy;
 
     @ManyToMany
+    @JsonIgnoreProperties(value = "bookList")
     @JoinTable(name = "wrote",
                joinColumns = {@JoinColumn(name = "bookid")},
                inverseJoinColumns = {@JoinColumn(name = "authorid")})
-    @JsonIgnoreProperties("authors")
-    private List<Author> authors = new ArrayList<>();
+    List<Author> authorList = new ArrayList<>();
 
     public Book()
     {
     }
 
-    public Book(String title, String ISBN, int copy, long sectionid)
+    public Book(String booktitle, String isbn, String copy)
     {
-        this.title = title;
-        this.ISBN = ISBN;
+        this.booktitle = booktitle;
+        this.isbn = isbn;
         this.copy = copy;
-        this.sectionid = sectionid;
+    }
+
+    public Book(String booktitle, String isbn, String copy, List<Author> authorList)
+    {
+        this.booktitle = booktitle;
+        this.isbn = isbn;
+        this.copy = copy;
+        this.authorList = authorList;
     }
 
     public long getBookid()
@@ -52,53 +56,43 @@ public class Book extends Auditable
         this.bookid = bookid;
     }
 
-    public String getTitle()
+    public String getBooktitle()
     {
-        return title;
+        return booktitle;
     }
 
-    public void setTitle(String title)
+    public void setBooktitle(String booktitle)
     {
-        this.title = title;
+        this.booktitle = booktitle;
     }
 
-    public String getISBN()
+    public String getIsbn()
     {
-        return ISBN;
+        return isbn;
     }
 
-    public void setISBN(String ISBN)
+    public void setIsbn(String isbn)
     {
-        this.ISBN = ISBN;
+        this.isbn = isbn;
     }
 
-    public int getCopy()
+    public String getCopy()
     {
         return copy;
     }
 
-    public void setCopy(int copy)
+    public void setCopy(String copy)
     {
         this.copy = copy;
     }
 
-    public long getSectionid()
+    public List<Author> getAuthorList()
     {
-        return sectionid;
+        return authorList;
     }
 
-    public void setSectionid(long sectionid)
+    public void setAuthorList(List<Author> authorList)
     {
-        this.sectionid = sectionid;
-    }
-
-    public List<Author> getAuthors()
-    {
-        return authors;
-    }
-
-    public void setAuthors(List<Author> authors)
-    {
-        this.authors = authors;
+        this.authorList = authorList;
     }
 }
